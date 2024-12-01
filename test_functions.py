@@ -1,6 +1,5 @@
 import unittest
 import os
-import time
 from main import (
     get_dependencies,
     build_dependency_graph,
