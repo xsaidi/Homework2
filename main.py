@@ -48,18 +48,15 @@ def generate_plantuml_script(graph):
 def visualize_graph(visualizer_path: str, script: str):
     """Визуализирует граф с помощью указанного визуализатора PlantUML."""
     try:
-        # Создаем временный файл для скрипта .puml
         temp_puml_path = "temp_script.puml"
         with open(temp_puml_path, "w") as temp_file:
             temp_file.write(script)
 
-        # Запускаем PlantUML для визуализации графа
         subprocess.run(
             ["java", "-jar", visualizer_path, "-tpng", temp_puml_path], check=True
         )
 
-        # Отображаем изображение в зависимости от ОС
-        subprocess.run(["explorer", "temp_script.png"])  # Для Windows используем explorer
+        subprocess.run(["explorer", "temp_script.png"])
         time.sleep(1)
         os.remove("temp_script.puml")
         os.remove("temp_script.png")
